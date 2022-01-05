@@ -2,7 +2,12 @@
 
 Inspired by the official tutorial for [Intro to React](https://reactjs.org/tutorial/tutorial.html).
 
+A basic game to learn about class-based/functional components, state, history, and making dynamic elements. I added a bit of styling and implemented a reset button.
 
+![React Tic Tac Toe](src/react-tic-tac-toe.gif)
+
+
+## Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
