@@ -96,6 +96,17 @@ class Game extends React.Component {
     });
   }
 
+  resetGame(){
+    // alert("hello");
+    this.setState({
+      history: [{
+        squares: Array(9).fill(null),
+      }],
+      stepNumber: 0,
+      xIsNext: true,
+    });
+  }
+
   render() {
     // show recent history and determine game status
     const history = this.state.history;
@@ -105,7 +116,7 @@ class Game extends React.Component {
     const moves = history.map((step, move) => {
       const desc = move ?
         'Go to move #' + move : 
-        'Go to game start';
+        'Go to start of game';
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -115,22 +126,30 @@ class Game extends React.Component {
 
     let status;
     if (winner) { 
-      status = 'Winner: ' + winner;
+      status = 'Winner is ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next player is ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
       <div className="game">
-        <div className="game-board">
-          <Board 
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
+        <h1>React Tic Tac Toe</h1>
+        <div className="message-wrapper">
+          <div className="status"><strong>Status:</strong> {status}</div>
+          <button className="reset" onClick={()=> this.resetGame()}>⚠️ Reset Game</button>
         </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
+        <div className="game-wrapper">
+          <div className="game-board">
+            <h2>Game</h2>
+            <Board 
+              squares={current.squares}
+              onClick={(i) => this.handleClick(i)}
+            />
+          </div>
+          <div className="game-info">
+            <h2>History</h2>
+            <ol>{moves}</ol>
+          </div>
         </div>
       </div>
     );
